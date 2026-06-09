@@ -62,7 +62,7 @@
 						Contact & Network
 					</h4>
 					<div class="flex flex-wrap gap-4">
-						<a href="mailto:contact@example.com" class="px-5 py-2 bg-slate-800 hover:bg-cyan-900/40 text-slate-300 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-sm font-mono transition-all duration-300 flex items-center gap-2">
+						<a href="mailto:2423gen@gmail.com" class="px-5 py-2 bg-slate-800 hover:bg-cyan-900/40 text-slate-300 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/50 rounded-lg text-sm font-mono transition-all duration-300 flex items-center gap-2">
 							Email
 						</a>
 						<a href="https://github.com/2423gen-stack" target="_blank" rel="noopener noreferrer" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-lg text-sm font-mono transition-all duration-300 flex items-center gap-2">
