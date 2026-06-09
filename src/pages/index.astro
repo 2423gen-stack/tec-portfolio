@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.svelte';
+import Publications from '../components/Publications.svelte';
+import Architectures from '../components/Architectures.svelte';
+import Philosophy from '../components/Philosophy.svelte';
+import Profile from '../components/Profile.svelte';
+---
+
+<Layout title="Gen Nishizumi | AI Architect">
+	<main class="relative">
+		<!-- Background gradient overlays -->
+		<div class="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgMGgxdjQwSDB6TTM5IDBoMXY0MEgzOXpNMCAwaDQwdjFIMHpNMCAzOWg0MHYxSDB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+Cjwvc3ZnPg==')] opacity-[0.2] pointer-events-none mix-blend-overlay"></div>
+		
+		<!-- Components -->
+		<Hero client:load />
+		
+		<div class="space-y-12 pb-24">
+			<Publications client:visible />
+			<Architectures client:visible />
+			<Philosophy client:visible />
+			<Profile client:visible />
+		</div>
+	</main>
+</Layout>
