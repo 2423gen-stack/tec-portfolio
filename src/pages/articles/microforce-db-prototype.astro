@@ -2,84 +2,214 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 ---
 
-<ArticleLayout title="MicroforceDBの原点" date="2026.06.11">
-	<h3>AIチャットからの閃いた多次元幾何学処理DB</h3>
+<ArticleLayout title="MicroforceDBの原点 / The Genesis of MicroforceDB" date="2026.06.11">
+	<div class="flex justify-end mb-6">
+		<button id="lang-toggle" class="px-4 py-2 bg-[#1a2333] hover:bg-cyan-900/40 text-cyan-400 border border-cyan-500/30 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+			<span class="lang-text">Read in English</span>
+		</button>
+	</div>
 
-	<h2>LLMのロジック</h2>
-	<p>自分は良く、暇な時はAIと雑談しているのだが、ある日雑談相手のgeminiに質問したことがある<br/>
-	「君らの学習してるDBってどういう構造をしているのか？」<br/>
-	AIの説明によると、空間上にデータを浮遊させており、それらを一度スキャンすると関連したワードが浮き出てくる...。<br/>
-	意味はイマイチだったが、はっきり解ったことは、RDBMSのように、テーブルを使って情報の出し入れをしていないことは理解できた。<br/>
-	そこで自分は考えたことがある。もし、テーブルを空間で扱ったらどうなるか？<br/>
-	それをAIに質問してみた。そしたらAIのテンションが急上昇した<br/>
-	彼ら(彼女ら？)の言うには、LLMの構造とそっくりなものが模写できるとのことだった。</p>
+	<!-- 日本語コンテンツ -->
+	<div id="content-ja" class="fade-in">
+		<h3>AIチャットからの閃いた多次元幾何学処理DB</h3>
 
-	<p>簡単に言うとこうらしい</p>
-	<ul>
-		<li>テーブルは透明なレイヤーとして再現できる</li>
-		<li>リレーションは必要なときだけアドリブで作ることが出来る</li>
-		<li>クエリも同様、必要な時にクエリを多次元構造に投射すると答えが収束する</li>
-	</ul>
+		<h2>LLMのロジック</h2>
+		<p>自分は良く、暇な時はAIと雑談しているのだが、ある日雑談相手のgeminiに質問したことがある<br/>
+		「君らの学習してるDBってどういう構造をしているのか？」<br/>
+		AIの説明によると、空間上にデータを浮遊させており、それらを一度スキャンすると関連したワードが浮き出てくる...。<br/>
+		意味はイマイチだったが、はっきり解ったことは、RDBMSのように、テーブルを使って情報の出し入れをしていないことは理解できた。<br/>
+		そこで自分は考えたことがある。もし、テーブルを空間で扱ったらどうなるか？<br/>
+		それをAIに質問してみた。そしたらAIのテンションが急上昇した<br/>
+		彼ら(彼女ら？)の言うには、LLMの構造とそっくりなものが模写できるとのことだった。</p>
 
-	<p><strong>あれ？これって素粒子コンピュータの反応に似てるな？</strong></p>
+		<p>簡単に言うとこうらしい</p>
+		<ul>
+			<li>テーブルは透明なレイヤーとして再現できる</li>
+			<li>リレーションは必要なときだけアドリブで作ることが出来る</li>
+			<li>クエリも同様、必要な時にクエリを多次元構造に投射すると答えが収束する</li>
+		</ul>
 
-	<p>これもAIに質問してみた。AIも部分的に認めた。ある一面で同じ反応をするらしい。<br/>
-	さらにAIに質問する。RDBMSで最も苦労する、情報が入ってる状態でのカラムの追加、修正などはどう扱うのか？<br/>
-	<strong>Answer.追加カラムはレイヤーが増えるだけ、不要なカラムは完全無視できるそうだ。</strong></p>
+		<p><strong>あれ？これって素粒子コンピュータの反応に似てるな？</strong></p>
 
-	<h3>マイグレーション不要のDBの原点、疑似素粒子コンピュータを再現</h3>
+		<p>これもAIに質問してみた。AIも部分的に認めた。ある一面で同じ反応をするらしい。<br/>
+		さらにAIに質問する。RDBMSで最も苦労する、情報が入ってる状態でのカラムの追加、修正などはどう扱うのか？<br/>
+		<strong>Answer.追加カラムはレイヤーが増えるだけ、不要なカラムは完全無視できるそうだ。</strong></p>
 
-	<p>列記するとこうだ</p>
-	<ul>
-		<li>テーブルは厚みがないので、レイヤー状にして理論上無限に重なる</li>
-		<li>”観測”は、どんなにレイヤーが重なっていても1回のスキャンで結果が収束する</li>
-		<li><strong>カラム修正は無視するか、新たにレイヤーを追加するだけで済む、結果、マイグレーションが不要</strong></li>
-		<li><strong>一度観測したクエリは静的コード化して、AIが毎度操作しなくても再利用可能</strong></li>
-	</ul>
+		<h3>マイグレーション不要のDBの原点、疑似素粒子コンピュータを再現</h3>
 
-	<p>つまり、<strong>素粒子コンピュータの”現象の観測”を部分的に模写することで、DBを作ることが可能</strong></p>
+		<p>列記するとこうだ</p>
+		<ul>
+			<li>テーブルは厚みがないので、レイヤー状にして理論上無限に重なる</li>
+			<li>”観測”は、どんなにレイヤーが重なっていても1回のスキャンで結果が収束する</li>
+			<li><strong>カラム修正は無視するか、新たにレイヤーを追加するだけで済む、結果、マイグレーションが不要</strong></li>
+			<li><strong>一度観測したクエリは静的コード化して、AIが毎度操作しなくても再利用可能</strong></li>
+		</ul>
 
-	<p>ということになる。<br/>
-	ここまで来て、自分も段々本気になってきたので、実際にコードに落とし込んでみることにした。</p>
+		<p>つまり、<strong>素粒子コンピュータの”現象の観測”を部分的に模写することで、DBを作ることが可能</strong></p>
 
-	<h2>多次元幾何学DBプロトタイプ</h2>
-	
-	<img src="/images/microforce-db-prototype.webp" alt="多次元幾何学DBプロトタイプ" loading="lazy" />
+		<p>ということになる。<br/>
+		ここまで来て、自分も段々本気になってきたので、実際にコードに落とし込んでみることにした。</p>
 
-	<p>ブループリントとしては以下のような組み合わせで開発することにした</p>
-	<ul>
-		<li>1. ORMでデータ型を厳格化</li>
-		<li>2. sqliteをKey-Value Store(KVS)として使用</li>
-		<li>3. Microforce-core(DB)</li>
-		<li>4. LLM接続時にDBの仕様、取り扱い方法を説明するプロトコル</li>
-		<li>5. 上記をMCPでラッピング</li>
-	</ul>
+		<h2>多次元幾何学DBプロトタイプ</h2>
+		
+		<img src="/images/microforce-db-prototype.webp" alt="多次元幾何学DBプロトタイプ" loading="lazy" />
 
-	<h3>1．ORMのスキーマ</h3>
-	<p>ここでは主として型の厳格化をアプリケーションレイヤーで処理するために、敢えて組み込んだ。<br/>
-	その理由は、生のデータやテキストベースのKVSの場合、観測精度が落ちるのである。これはAIが観測した場合のハルシネーションを誘発する。よって、型を厳格化してレイヤーのズレを防止する</p>
+		<p>ブループリントとしては以下のような組み合わせで開発することにした</p>
+		<ul>
+			<li>1. ORMでデータ型を厳格化</li>
+			<li>2. sqliteをKey-Value Store(KVS)として使用</li>
+			<li>3. Microforce-core(DB)</li>
+			<li>4. LLM接続時にDBの仕様、取り扱い方法を説明するプロトコル</li>
+			<li>5. 上記をMCPでラッピング</li>
+		</ul>
 
-	<h3>2．sqliteとレコードデータ</h3>
-	<p>ここはレコードごとにjsonで保存する。RDBMSの行データや、プレーンテキストはAIや幾何学処理に置いて所謂ラスターデータに相当し、ブレやノイズを発生させる。これをjsonを使って構造化することはベクターデータに変換することを意味する。この工夫により、<strong>幾何学処理実行時、構造と構造の数学的な幾何学交差で収束することを可能とする</strong>。<br/>
-	カラム追加は単独レコードとして保存する。マイグレーションに相当する処理は多次元幾何学処理で行うので、単純にレコードを追加するだけでよい</p>
+		<h3>1．ORMのスキーマ</h3>
+		<p>ここでは主として型の厳格化をアプリケーションレイヤーで処理するために、敢えて組み込んだ。<br/>
+		その理由は、生のデータやテキストベースのKVSの場合、観測精度が落ちるのである。これはAIが観測した場合のハルシネーションを誘発する。よって、型を厳格化してレイヤーのズレを防止する</p>
 
-	<h3>3. Microforce-core</h3>
-	<p>仮想空間を展開し、疑似量子コンピュータの現象を再現するDB本体である。ここにsqliteからレコードごとにレイヤーを作り多次元幾何学レイヤーを再現、現象を収束させる。ORMから読み込まれたクエリを”観測条件”として現象を収束させる。不要なカラムは無視し、追加されたカラムは無限に重なるレイヤーで数学的に結合される。量子コンピュータで形容される”浮き上がった現象”を採取することにより、必要なデータを取り出すことができる。</p>
+		<h3>2．sqliteとレコードデータ</h3>
+		<p>ここはレコードごとにjsonで保存する。RDBMSの行データや、プレーンテキストはAIや幾何学処理に置いて所謂ラスターデータに相当し、ブレやノイズを発生させる。これをjsonを使って構造化することはベクターデータに変換することを意味する。この工夫により、<strong>幾何学処理実行時、構造と構造の数学的な幾何学交差で収束することを可能とする</strong>。<br/>
+		カラム追加は単独レコードとして保存する。マイグレーションに相当する処理は多次元幾何学処理で行うので、単純にレコードを追加するだけでよい</p>
 
-	<h3>4. DBの仕様、取り扱いマニュアルを実装</h3>
-	<p>LLMがこのDBに接続したとき、設計と操作メソッドが他のDBと違うため、迷わないようにマニュアルを内包しておく</p>
+		<h3>3. Microforce-core</h3>
+		<p>仮想空間を展開し、疑似量子コンピュータの現象を再現するDB本体である。ここにsqliteからレコードごとにレイヤーを作り多次元幾何学レイヤーを再現、現象を収束させる。ORMから読み込まれたクエリを”観測条件”として現象を収束させる。不要なカラムは無視し、追加されたカラムは無限に重なるレイヤーで数学的に結合される。量子コンピュータで形容される”浮き上がった現象”を採取することにより、必要なデータを取り出すことができる。</p>
 
-	<h3>5. LLMネイティブMCPを標準装備</h3>
-	<p>このDBは、クエリ使用時の要件をMarkdownでテンプレート化して、アンケート方式にしておけば、学習曲線は不要な構成になっている。なぜならば、最初からAIが介入する前提なので、クエリ変換はAIにコンパイルさせれば良いからである。そのためにMCPでラッピングすることは当初からのポリシーとしてあった。使い方、活用法、何でもAIに聞いて見るだけで色々とアドバイスしてくれるだろう</p>
+		<h3>4. DBの仕様、取り扱いマニュアルを実装</h3>
+		<p>LLMがこのDBに接続したとき、設計と操作メソッドが他のDBと違うため、迷わないようにマニュアルを内包しておく</p>
 
-	<h2>追加解説〜ベクターデータベースとの相違点</h2>
-	<p>既出のPinecone、pgvectorなど、ベクターデータベースとの違いについて、<br/>
-	これらも多次元空間でのスキャンを行い、データを抽出するが、これらは文章を数値化して意味合いが似ている、近い検索を実行するため、文章と数値化変換に強結合する根拠は、実は無い。なので曖昧な結果が戻ってくる。</p>
+		<h3>5. LLMネイティブMCPを標準装備</h3>
+		<p>このDBは、クエリ使用時の要件をMarkdownでテンプレート化して、アンケート方式にしておけば、学習曲線は不要な構成になっている。なぜならば、最初からAIが介入する前提なので、クエリ変換はAIにコンパイルさせれば良いからである。そのためにMCPでラッピングすることは当初からのポリシーとしてあった。使い方、活用法、何でもAIに聞いて見るだけで色々とアドバイスしてくれるだろう</p>
 
-	<p>一方、多次元幾何学処理は構造化データを物理的に重ね合わせるために厳密な制約解決を行っているために精度が高くなる。単なるファジー検索と格差が生まれ、その根拠は数理的に実証できる処理が期待できる</p>
+		<h2>追加解説〜ベクターデータベースとの相違点</h2>
+		<p>既出のPinecone、pgvectorなど、ベクターデータベースとの違いについて、<br/>
+		これらも多次元空間でのスキャンを行い、データを抽出するが、これらは文章を数値化して意味合いが似ている、近い検索を実行するため、文章と数値化変換に強結合する根拠は、実は無い。なので曖昧な結果が戻ってくる。</p>
 
-	<p>
-		MicroforceDBリポジトリ：<a href="https://github.com/2423gen-stack/microforce-core.git" target="_blank" rel="noopener noreferrer">https://github.com/2423gen-stack/microforce-core.git</a> (MITライセンス)<br/>
-		論文：CERN”Zenodo”に投稿、<a href="https://zenodo.org/records/20602701" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20602701</a>, <a href="https://zenodo.org/records/20580181" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20580181</a>
-	</p>
+		<p>一方、多次元幾何学処理は構造化データを物理的に重ね合わせるために厳密な制約解決を行っているために精度が高くなる。単なるファジー検索と格差が生まれ、その根拠は数理的に実証できる処理が期待できる</p>
+
+		<p>
+			MicroforceDBリポジトリ：<a href="https://github.com/2423gen-stack/microforce-core.git" target="_blank" rel="noopener noreferrer">https://github.com/2423gen-stack/microforce-core.git</a> (MITライセンス)<br/>
+			論文：CERN”Zenodo”に投稿、<a href="https://zenodo.org/records/20602701" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20602701</a>, <a href="https://zenodo.org/records/20580181" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20580181</a>
+		</p>
+	</div>
+
+	<!-- English Content -->
+	<div id="content-en" class="fade-in" style="display: none;">
+		<h3>A Multi-Dimensional Geometry DB Inspired by AI Chat</h3>
+
+		<h2>The Logic of LLMs</h2>
+		<p>I often chat with AI in my free time. One day, I asked my chat partner, Gemini:<br/>
+		"What is the structure of the database you are learning from?"<br/>
+		According to the AI's explanation, data floats in space, and when scanned once, related words surface...<br/>
+		I didn't fully grasp the meaning, but one thing was clear: unlike RDBMS, they do not use tables to input and extract information.<br/>
+		That got me thinking. What if we handled tables in space?<br/>
+		I asked the AI about this. Its excitement immediately spiked.<br/>
+		They (or she?) told me that we could replicate a structure very similar to that of an LLM.</p>
+
+		<p>Simply put, it works like this:</p>
+		<ul>
+			<li>Tables can be reproduced as transparent layers.</li>
+			<li>Relations can be created ad-hoc only when needed.</li>
+			<li>Similarly, when a query is projected onto the multi-dimensional structure when required, the answer converges.</li>
+		</ul>
+
+		<p><strong>Wait, doesn't this resemble the reactions of a quantum particle computer?</strong></p>
+
+		<p>I asked the AI about this as well, and it partially agreed. In some aspects, it exhibits the same reactions.<br/>
+		I asked further: How does it handle the most difficult part of an RDBMS—adding or modifying columns when data is already present?<br/>
+		<strong>Answer: Adding a column just adds a layer. Unnecessary columns can be completely ignored.</strong></p>
+
+		<h3>The Genesis of a Migration-Free DB: Simulating a Pseudo-Particle Computer</h3>
+
+		<p>To summarize:</p>
+		<ul>
+			<li>Since tables have no thickness, they can be layered infinitely in theory.</li>
+			<li>An "observation" converges the results in a single scan, no matter how many layers overlap.</li>
+			<li><strong>Column modifications can be ignored, or you simply add a new layer. As a result, migrations are unnecessary.</strong></li>
+			<li><strong>Once observed, a query can be statically coded and reused without the AI operating it every time.</strong></li>
+		</ul>
+
+		<p>In other words, <strong>by partially simulating the "observation of phenomena" of a particle computer, it is possible to create a DB.</strong></p>
+
+		<p>This was my conclusion.<br/>
+		Having reached this point, I started taking it seriously and decided to implement it in actual code.</p>
+
+		<h2>Multi-Dimensional Geometry DB Prototype</h2>
+		
+		<img src="/images/microforce-db-prototype.webp" alt="Multi-Dimensional Geometry DB Prototype" loading="lazy" />
+
+		<p>I decided to develop the blueprint with the following combination:</p>
+		<ul>
+			<li>1. Strict data typing using an ORM</li>
+			<li>2. Using SQLite as a Key-Value Store (KVS)</li>
+			<li>3. Microforce-core (The DB itself)</li>
+			<li>4. A protocol explaining the DB's specifications and usage upon LLM connection</li>
+			<li>5. Wrapping the above in an MCP</li>
+		</ul>
+
+		<h3>1. ORM Schema</h3>
+		<p>I intentionally incorporated this mainly to handle strict typing at the application layer.<br/>
+		The reason is that observation accuracy drops with raw data or text-based KVS. This induces hallucinations when observed by an AI. Therefore, strict typing prevents layer misalignment.</p>
+
+		<h3>2. SQLite and Record Data</h3>
+		<p>Here, each record is saved as JSON. RDBMS row data or plain text correspond to what we call raster data in AI and geometric processing, causing blurring and noise. Structuring this using JSON means converting it to vector data. Through this ingenuity, <strong>it is possible to converge through the mathematical geometric intersection of structures when executing geometric processing.</strong><br/>
+		Added columns are saved as independent records. Since processing equivalent to migration is handled by multi-dimensional geometric processing, you simply add a record.</p>
+
+		<h3>3. Microforce-core</h3>
+		<p>This is the main DB body that deploys a virtual space and simulates the phenomena of a pseudo-quantum computer. It creates layers for each record from SQLite, reproduces multi-dimensional geometric layers, and converges the phenomena. It uses queries read from the ORM as "observation conditions" to converge the phenomena. Unnecessary columns are ignored, and added columns are mathematically combined via infinitely overlapping layers. By extracting the "surfaced phenomena" characterized by quantum computers, you can retrieve the necessary data.</p>
+
+		<h3>4. Implementing DB Specifications and Usage Manual</h3>
+		<p>Because the design and operation methods differ from other DBs, a manual is included so that when an LLM connects to this DB, it doesn't get confused.</p>
+
+		<h3>5. LLM-Native MCP as Standard Equipment</h3>
+		<p>This DB is structured to eliminate the learning curve by templating query requirements in Markdown in a questionnaire format. Since AI intervention is assumed from the start, query compilation can be delegated to the AI. Wrapping it in an MCP was a core policy from the beginning. Just ask the AI how to use it or leverage it, and it will offer various advice.</p>
+
+		<h2>Additional Note: Differences from Vector Databases</h2>
+		<p>Regarding differences from existing vector databases like Pinecone and pgvector:<br/>
+		They also scan multi-dimensional space to extract data, but because they digitize sentences to search for similar meanings or proximities, there is actually no solid basis for strongly coupling sentences and numeric conversion. Thus, vague results are returned.</p>
+
+		<p>On the other hand, multi-dimensional geometric processing physically overlaps structured data and performs strict constraint solving, resulting in higher accuracy. A gap emerges between this and mere fuzzy searching, and we can expect processing whose rationale can be mathematically proven.</p>
+
+		<p>
+			MicroforceDB Repository: <a href="https://github.com/2423gen-stack/microforce-core.git" target="_blank" rel="noopener noreferrer">https://github.com/2423gen-stack/microforce-core.git</a> (MIT License)<br/>
+			Paper: Published to CERN "Zenodo", <a href="https://zenodo.org/records/20602701" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20602701</a>, <a href="https://zenodo.org/records/20580181" target="_blank" rel="noopener noreferrer">https://zenodo.org/records/20580181</a>
+		</p>
+	</div>
+
+	<script>
+		// Setup translation toggle functionality
+		document.addEventListener('DOMContentLoaded', () => {
+			const toggleBtn = document.getElementById('lang-toggle');
+			if (!toggleBtn) return;
+			
+			const contentJa = document.getElementById('content-ja');
+			const contentEn = document.getElementById('content-en');
+			const langText = toggleBtn.querySelector('.lang-text');
+			let currentLang = 'ja';
+
+			toggleBtn.addEventListener('click', () => {
+				if (currentLang === 'ja') {
+					contentJa.style.display = 'none';
+					contentEn.style.display = 'block';
+					if(langText) langText.textContent = '日本語で読む';
+					currentLang = 'en';
+				} else {
+					contentJa.style.display = 'block';
+					contentEn.style.display = 'none';
+					if(langText) langText.textContent = 'Read in English';
+					currentLang = 'ja';
+				}
+			});
+		});
+	</script>
+
+	<style>
+		.fade-in {
+			animation: fadeIn 0.4s ease-in-out;
+		}
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(5px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+	</style>
 </ArticleLayout>
