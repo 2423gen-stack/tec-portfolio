@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.svelte';
 import Publications from '../components/Publications.svelte';
 import Architectures from '../components/Architectures.svelte';
+import Blog from '../components/Blog.svelte';
 import Philosophy from '../components/Philosophy.svelte';
 import Profile from '../components/Profile.svelte';
 ---
@@ -18,6 +19,7 @@ import Profile from '../components/Profile.svelte';
 		<div class="space-y-12 pb-24">
 			<Publications client:visible />
 			<Architectures client:visible />
+			<Blog client:visible />
 			<Philosophy client:visible />
 			<Profile client:visible />
 		</div>
